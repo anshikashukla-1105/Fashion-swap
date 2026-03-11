@@ -1,0 +1,142 @@
+@PUT
+@Consumes("text/html")
+public void putHtml(String content) { }
+    @PUT
+    @Path("{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response updateMessage(@PathParam("id")String id, String message)
+    {
+        String result="Updated message ID: "+id+" with"+message;
+        return Response.ok(result).build();
+    }
+
+
+
+
+
+@GET
+    @Path("upper")
+    @Produces("text/plain")
+    public String toUpper(@QueryParam("msg") String msg) {
+        return msg.toUpperCase();
+    }
+
+
+àDocker build -t py-prac .
+
+àDocker run py-prac
+
+Creating database-table, applying mysql command
+
+àDocker pull mysql:8.0
+
+àdocker run -d –name mydemo -p 3306:3306 -e MYSQL_ROOT_PASSWORD=student123 mysql:8.0
+
+àdocker exec -it mydemo mysql -u root -p
+
+àCREATE DATABASE tyit;
+
+àuse tyit;
+
+àCREATE TABLE student(id INT, name VARCHAR(20));
+
+à INSERT INTO student VALUES(1,'Anshika');
+
+à alter table student drop column subject;
+
+
+àdocker –version
+
+àNew-Item -ItemType Directory -Path “c:\kubectl” -Force
+
+à$env:PATH +=”;c:\kubectl”
+
+àInvoke-WebRequest -OutFile “c:\kubectl\kubectl.exe” -Uri “—url for kubectl exe download”
+
+àkubectl version  --client
+
+àwinget install Kubernetes.minikube
+
+àminikube version
+
+àminikube start –driver=docker
+
+àminikube status
+
+àkubectl get nodes
+
+àkubectl create deployment hello-minikube  –image=kicbase/echo-server:1.0
+
+àkubectl get pods
+
+àkubectl expose deployment hello-minikube –type=NodePort  –port=8080
+
+àminikube service hello-minikube –url
+
+
+
+
+
+
+​àminikube start  --driver=docker
+
+​àminikube status
+
+​----new powershell---
+
+​àkubectl get  nodes
+
+​àkubectl create namespace argocd 
+
+​àkubectl apply -n argocd -f    https://raw.githubusercontent.com/argoproj/argo-cd/stable/manif ests/install.yaml            #shd be in single line
+
+​àkubectl get pods -n argocd
+
+​---new powershell---
+
+​àkubectl port-forward svc/argocd-server  -n argocd 8081:443 –address 0.0.0.0
+
+​---open localhost:8081---
+
+​---powershell 2(the previous one)---
+
+​à kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}"
+
+​
+
+à[System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String(“---pwd from prv line---”))
+
+
+
+
+
+àcd C:\Users\adity\OneDrive\Desktop\kafka-demo
+
+àdir (u shld see the docker-compose.yml file)
+
+àdocker compose up -d
+
+àdocker ps
+
+àdocker compose -f docker-compose.yml up -d
+
+In new powershell, creating a topic named quick-demo (topic-where the data can be written and read)
+
+--In your folder’s location—
+
+à docker exec -it kafka kafka-topics --create --topic quick-demo1 --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1 .
+
+(it’s not L it’s 1(one))
+
+In another new powershell, creating a producer(writes in the topic) and consumer(reads from the topics)
+
+à docker exec -it kafka kafka-topics --describe --topic quick-demo1 orders --bootstrap-server localhost:9092
+
+--in old powershell—
+
+àdocker exec -it kafka kafka-console-producer --topic quick-demo1 orders   --bootstrap-server localhost:9092
+
+--in new powershell--
+
+àdocker exec -it kafka kafka-console-consumer --topic quick-demo1   --bootstrap-server localhost:9092
