@@ -1,0 +1,352 @@
+const mongoose = require('mongoose');
+
+const cartSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
+  items: [
+    {
+      itemId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'ClothingItem',
+        required: true
+      },
+      addedAt: { type: Date, default: Date.now }
+    }
+  ]
+}, { timestamps: true });
+
+module.exports = mongoose.model('Cart', cartSchema);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#2 trans
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class translaion : MonoBehaviour
+{
+    public float speed = 1f;
+    private Rigidbody2D rb2d;
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        rb2d=GetComponent<Rigidbody2D>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        float moveX=Input.GetAxis("Horizontal");// A/D or Left/Right arrow
+        float moveY=Input.GetAxis("Vertical");// W/S or up/down arrow
+
+        Vector2 movement =new Vector2(moveX,moveY);
+            rb2d.linearVelocity=movement*speed;
+
+    }
+}
+
+#2 scal
+using UnityEngine;
+public class scaling : MonoBehaviour
+{
+    public float speed= 1f;
+    private Rigidbody2D rb2d;
+    public float scaleSpeed = 2f;
+    public float minScale = 0.5f;
+    public float maxScale = 5f;
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        rb2d= GetComponent<Rigidbody2D>();
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        float input = 0f;
+        if (Input.GetKey(KeyCode.UpArrow)) input = 1f;
+        if (Input.GetKey(KeyCode.DownArrow)) input = -1f;
+        Vector2 scale = transform.localScale;
+        scale.x += input * scaleSpeed * Time.deltaTime;
+        scale.y += input * scaleSpeed * Time.deltaTime;
+        scale.x = Mathf.Clamp(scale.x, minScale, maxScale);
+        scale.y = Mathf.Clamp(scale.y, minScale, maxScale);
+        transform.localScale = scale;
+    }
+}
+ 
+#2 rot
+using UnityEngine;
+public class rotation : MonoBehaviour
+{
+    private Rigidbody2D rb2d;
+    public float rotationSpeed = 150f;
+    void Start()
+    {
+        rb2d= GetComponent<Rigidbody2D>();
+    }
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.LeftArrow))
+            transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
+        if (Input.GetKey(KeyCode.RightArrow))
+            transform.Rotate(0, 0, -rotationSpeed * Time.deltaTime);
+    }
+}
+
+#4 buttxtmp
+using UnityEngine; 
+using UnityEngine.UI; 
+ 
+public class button_script : MonoBehaviour 
+{ 
+    public Button button1; 
+ 
+    void Start() 
+    { 
+        button1.onClick.AddListener(ButtonClicked); 
+    } 
+ 
+    void ButtonClicked() 
+    { 
+        Debug.Log("Button Clicked"); 
+    } 
+} 
+ 
+#img
+using UnityEngine; 
+ 
+public class image_run: MonoBehaviour 
+{ 
+    public float speed = 200f; 
+ 
+    void Update() 
+    { 
+        float x = Input.GetAxis("Horizontal"); 
+        float y = Input.GetAxis("Vertical"); 
+ 
+        transform.Translate(new Vector3(x, y, 0) * speed * Time.deltaTime); 
+    } 
+} 
+
+#tog
+using UnityEngine; 
+using UnityEngine.UI; 
+ 
+public class toggle : MonoBehaviour 
+{ 
+    public Toggle t1; 
+ 
+    void Start() 
+    { 
+        t1.onValueChanged.AddListener(UserValueChanged); 
+    } 
+ 
+    public void UserValueChanged(bool value) 
+    { 
+        Debug.Log("Toggle value changed: " + value); 
+    } 
+} 
+ 
+#slid
+ 
+using UnityEngine; 
+using UnityEngine.UI; 
+ 
+public class slider : MonoBehaviour 
+{ 
+    public void SliderValueChanged(float value) 
+    { 
+        Debug.Log("Slider Value Changed:"+value); 
+    } 
+} 
+#ddown
+using UnityEngine; 
+ 
+public class dropdown : MonoBehaviour 
+{ 
+   public void GetDropDownValue() 
+   { 
+        int picked= m_Dropdown value; 
+        string selectedOption =m_Dropdown.options[picked].text; 
+        Debug.Log(selectedOption); 
+   } 
+ 
+    // Update is called once per frame 
+    void Update() 
+    { 
+         
+    } 
+} 
+#inptfl
+using UnityEngine; 
+using UnityEngine.UI; 
+ 
+public class TextInputScript : MonoBehaviour 
+{ 
+    public InputField inputField; 
+ 
+    public void ReadInputText() 
+    { 
+        string userText = inputField.text; 
+        Debug.Log("Entered Text Is : " + userText); 
+    } 
+} 
+
+#5.2deff
+#pfeff
+using UnityEngine;
+
+public class PlatformEffector : MonoBehaviour
+{
+    public float moveSpeed = 5f;
+    public float jumpForce = 7f;
+
+    private Rigidbody2D rb;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+        }
+
+        float moveX = Input.GetAxis("Horizontal");
+        rb.linearVelocity = new Vector2(moveX * moveSpeed, rb.linearVelocity.y);
+    }
+}
+#areff
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class audio : MonoBehaviour
+{
+    private AudioSource audiosource;
+    void Start()
+    {
+        audiosource = GetComponent<AudioSource>();
+        if (audiosource == null)
+        {
+            Debug.Log(" No audio ");
+        }
+        
+    }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            audiosource.Play();
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            audiosource.Pause();
+        }
+    }
+}
+
+#6scmgmt
+#loadsc
+using UnityEngine; 
+using UnityEngine.SceneManagement; 
+using System.Collections; 
+ 
+public class LoadingScene : MonoBehaviour 
+{ 
+    //normal Load Scene 
+    public void LoadScene1() 
+    { 
+        SceneManager.LoadScene("Ss1"); 
+    } 
+    //back button 
+    public void LoadScene3() 
+    { 
+        SceneManager.LoadScene("MS"); 
+    } 
+} 
+#addsc
+using UnityEngine; 
+using UnityEngine.SceneManagement; 
+using System.Collections; 
+ 
+public class LoadingScene : MonoBehaviour 
+{ 
+    // Additive scene load 
+    public void AdditiveScene() 
+    { 
+        SceneManager.LoadScene("s2", LoadSceneMode.Additive); 
+    } 
+    //back button 
+    public void LoadScene3() 
+    { 
+        SceneManager.LoadScene("MS"); 
+    } 
+} 
+#asyncscene
+
+using UnityEngine; 
+using UnityEngine.SceneManagement; 
+using System.Collections; 
+ 
+public class LoadingScene : MonoBehaviour 
+{ 
+    //LoadingAsyncScene 
+   public void LoadSceneAsyncButton() 
+    { 
+        StartCoroutine(LoadAsync()); 
+    } 
+ 
+    IEnumerator LoadAsync() 
+    { 
+        AsyncOperation operation = 
+            SceneManager.LoadSceneAsync("MS"); 
+ 
+        while (!operation.isDone) 
+        { 
+            Debug.Log(operation.progress*100 + "%");  
+            yield return null; 
+        } 
+    } 
+}
+
+#unloadsc
+using UnityEngine; 
+using UnityEngine.SceneManagement; 
+using System.Collections; 
+ 
+public class LoadingScene : MonoBehaviour 
+{ 
+    //unload scene 
+    public void UnloadScene(string sceneName) 
+    { 
+        SceneManager.UnloadSceneAsync("Ss1"); 
+    } 
+  
+}
+
+
